@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJERCICIO 5</title>
+  </head>
+  <body>
+    <script>
+      /*
+            Datos del usuario obtenidos de los objetos screen, navigator y location.
+        */
+
+      let anchoPantalla = screen.width;
+      let altoPantalla = screen.height;
+      let idiomaNavegador = navigator.language; //  ej: "es-ES"
+      let esConexionSegura = location.protocol == "https:";
+
+      //  tipoDispositivo
+      let tipoDispositivo;
+      if (anchoPantalla < 768) {
+        tipoDispositivo = "movil";
+      } else if (anchoPantalla >= 768 && anchoPantalla < 1024) {
+        tipoDispositivo = "tablet";
+      } else {
+        tipoDispositivo = "escritorio";
+      }
+
+      //  resolucionPantalla
+      let resolucionPantalla = `${anchoPantalla}x${altoPantalla}`;
+
+      //  orientacionPantalla
+      let orientacionPantalla =
+        anchoPantalla >= altoPantalla ? "horizontal" : "vertical";
+
+      //  idiomaPrincipal: 2 primeros caracteres en minúsculas
+      let idiomaPrincipal = idiomaNavegador.substring(0, 2).toLowerCase();
+
+      //  protocoloSeguro
+      let protocoloSeguro = esConexionSegura ? "https:" : "http:";
+
+      //  Escribimos la información por pantalla
+      document.write("tipoDispositivo: " + tipoDispositivo + "<br>");
+      document.write("resolucionPantalla: " + resolucionPantalla + "<br>");
+      document.write("orientacionPantalla: " + orientacionPantalla + "<br>");
+      document.write("idiomaPrincipal: " + idiomaPrincipal + "<br>");
+      document.write("protocoloSeguro: " + protocoloSeguro + "<br>");
+    </script>
+  </body>
+</html>

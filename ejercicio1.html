@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJERCICIO 1</title>
+    <script>
+      /*
+            Abrimos una ventana de 600 x 400 con window.open y escribimos en ella
+            la fecha actual obtenida con el objeto Date.
+
+
+            He usado un botón porque el navegador bloquea las ventanas que se abren
+            solas al cargar la página (hay que permitir las ventanas emergentes).
+        */
+
+      function abrirVentana() {
+        //  Fecha actual (si no pasamos parámetros captura la hora actual)
+        let hoy = new Date();
+        let dia = hoy.getDate();
+        let mes = hoy.getMonth() + 1; //  los meses empiezan en 0
+        let anio = hoy.getFullYear();
+
+        //  Días que faltan para fin de año: restamos milisegundos y pasamos a días
+        let finDeAnio = new Date(anio, 11, 31);
+        let faltan = Math.ceil((finDeAnio - hoy) / (1000 * 60 * 60 * 24));
+
+        //  Nueva ventana: ancho 600, alto 400
+        let nuevaVentana = window.open("", "nueva", "width=600,height=400");
+
+        nuevaVentana.document.write(
+          "Hoy es " +
+            dia +
+            "/" +
+            mes +
+            "/" +
+            anio +
+            " y faltan " +
+            faltan +
+            " días para fin de año",
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="abrirVentana()">Abrir ventana</button>
+  </body>
+</html>

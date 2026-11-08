@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJERCICIO 2</title>
+    <script>
+      /*
+            Compresión de cadenas: sustituimos las rachas de caracteres repetidos
+            por el número de repeticiones seguido del carácter.
+            Solo admite letras y espacios (el espacio se cambia por ?).
+        */
+
+      //  A) Función de compresión
+      function comprimir(cadena) {
+        //  Si contiene números lanzamos un error
+        if (/\d/.test(cadena)) {
+          return "ERROR: la cadena no puede contener números";
+        }
+
+        //  Solo letras del alfabeto y espacios
+        if (!/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/.test(cadena)) {
+          return "ERROR: solo se admiten letras y espacios";
+        }
+
+        //  Cambiamos los espacios por ?
+        cadena = cadena.replace(/ /g, "?");
+
+        let resultado = "";
+        let contador = 1;
+
+        for (let i = 0; i < cadena.length; i++) {
+          //  Si el siguiente carácter es igual, aumentamos la racha
+          if (cadena.charAt(i) == cadena.charAt(i + 1)) {
+            contador++;
+          } else {
+            //  Fin de racha: si hay más de una ponemos el número delante
+            if (contador > 1) resultado += contador;
+            resultado += cadena.charAt(i);
+            contador = 1;
+          }
+        }
+        return resultado;
+      }
+
+      //  B) Función de descompresión
+      function descomprimir(cadena) {
+        let resultado = "";
+        let numero = ""; //  guarda los dígitos hasta encontrar el carácter
+
+        for (let i = 0; i < cadena.length; i++) {
+          let caracter = cadena.charAt(i);
+
+          if (/\d/.test(caracter)) {
+            numero += caracter;
+          } else {
+            //  Si no había número, el carácter aparece una sola vez
+            let veces = numero == "" ? 1 : parseInt(numero);
+
+            //  ? vuelve a ser un espacio
+            if (caracter == "?") caracter = " ";
+
+            resultado += caracter.repeat(veces);
+            numero = "";
+          }
+        }
+        return resultado;
+      }
+
+      //  Pruebas
+      document.write("holaaaa mundo -> " + comprimir("holaaaa mundo") + "<br>"); //->hol4a?mundo
+      document.write("aaabbcaaaa -> " + comprimir("aaabbcaaaa") + "<br>"); //->3a2bc4a
+      document.write("hol4a?mundo -> " + descomprimir("hol4a?mundo") + "<br>"); //->holaaaa mundo
+      document.write("abc123 -> " + comprimir("abc123") + "<br>"); //->ERROR
+    </script>
+  </head>
+  <body></body>
+</html>

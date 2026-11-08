@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJERCICIO 3</title>
+    <script>
+      /*
+            La primera vez que entra el usuario le preguntamos el idioma con prompt
+            y lo guardamos en localStorage. Las siguientes veces no preguntamos.
+        */
+
+      //  Si no hay idioma guardado, es la primera visita
+      if (!localStorage.idioma) {
+        let idioma = prompt("Idioma / Language (EN / ES)");
+
+        //  Mientras no sea EN o ES, avisamos del error y volvemos a preguntar
+        while (idioma != "EN" && idioma != "ES") {
+          alert("ERROR: solo se puede introducir EN o ES");
+          idioma = prompt("Idioma / Language (EN / ES)");
+        }
+
+        localStorage.idioma = idioma;
+      }
+
+      //  Mostramos el texto en el idioma guardado
+      if (localStorage.idioma == "EN") {
+        document.write(
+          "<h1>Welcome</h1><p>This website is shown in English.</p>",
+        );
+      } else {
+        document.write(
+          "<h1>Bienvenido</h1><p>Esta web se muestra en español.</p>",
+        );
+      }
+
+      //  Para probar de nuevo: localStorage.removeItem('idioma')
+    </script>
+  </head>
+  <body></body>
+</html>

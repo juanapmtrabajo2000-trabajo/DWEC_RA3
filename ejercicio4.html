@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJERCICIO 4</title>
+    <script>
+      /*
+            setTimeout ejecuta una función transcurridos x milisegundos.
+            Redirigimos con location.href a los 3 segundos de cargar la página.
+        */
+
+      function redirigir() {
+        location.href = "ejercicio5.html";
+      }
+
+      window.onload = function () {
+        setTimeout(redirigir, 3000); //  3000 ms = 3 segundos
+      };
+    </script>
+  </head>
+  <body>
+    <p>Serás redirigido en 3 segundos...</p>
+  </body>
+</html>
